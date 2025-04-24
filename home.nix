@@ -26,7 +26,7 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -34,6 +34,9 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.kitty
+    pkgs.starship
+    pkgs.ghostty
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -88,6 +91,25 @@
     enable = true;
     userName = "Raphael Oliveira";
     userEmail = "raphael.msoliveira@gmail.com";
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+    };
+  };
+
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      theme = "tokyonight";
+    };
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

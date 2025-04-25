@@ -18,6 +18,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.yazi
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     pkgs.lazygit
@@ -36,7 +37,7 @@
     # '')
     pkgs.kitty
     pkgs.starship
-    pkgs.ghostty
+    pkgs.tldr
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -100,16 +101,13 @@
     };
   };
 
-  programs.ghostty = {
-    enable = true;
-    settings = {
-      theme = "tokyonight";
-    };
-  };
-
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.yazi = {
+    enable = true;
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

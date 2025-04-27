@@ -4,13 +4,11 @@
 
 { config, pkgs, ... }:
 
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -48,25 +46,24 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   services.keyd = {
-  enable = true;
-  keyboards = {
-    # The name is just the name of the configuration file, it does not really matter
-    default = {
-      ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
-      # Everything but the ID section:
-      settings = {
-        # The main layer, if you choose to declare it in Nix
-        main = {
-          capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
-          rightcontrol = "rightcontrol";
+    enable = true;
+    keyboards = {
+      # The name is just the name of the configuration file, it does not really matter
+      default = {
+        ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
+        # Everything but the ID section:
+        settings = {
+          # The main layer, if you choose to declare it in Nix
+          main = {
+            capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
+            rightcontrol = "rightcontrol";
+          };
+          otherlayer = { };
         };
-        otherlayer = {};
       };
     };
   };
-};
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -107,10 +104,13 @@
   users.users.raphael = {
     isNormalUser = true;
     description = "Raphael Oliveira";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -120,25 +120,24 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  git
-  wget
-  neovim
-  fzf
-  fd
-  ripgrep
-  curl
-  zsh
-  zoxide
-  starship
-  btop
-  helix
-  bat
-  nixfmt-rfc-style
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    git
+    wget
+    neovim
+    fzf
+    fd
+    ripgrep
+    curl
+    zsh
+    zoxide
+    starship
+    btop
+    helix
+    bat
+    nixfmt-rfc-style
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -168,7 +167,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
   programs.zsh.enable = true;
-  
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }

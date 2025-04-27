@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -17,12 +22,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.yazi
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    pkgs.lazygit
-
+  home.packages = with pkgs; [
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -35,9 +35,13 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.kitty
-    pkgs.starship
-    pkgs.tldr
+    yazi
+    lazygit
+    tmux
+    kitty
+    starship
+    tldr
+    nil
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -72,7 +76,7 @@
   #  /etc/profiles/per-user/raphael/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
   };
 
   programs.zsh = {
@@ -84,9 +88,23 @@
     history.size = 10000;
     history.ignoreAllDups = true;
     history.path = "$HOME/.zsh_history";
-    history.ignorePatterns = ["rm *" "pkill *" "cp *"];
-    
-  }; 
+    history.ignorePatterns = [
+      "rm *"
+      "pkill *"
+      "cp *"
+    ];
+
+    # With Antidote:
+    antidote = {
+      enable = true;
+      plugins = [
+        ''
+          Multirious/zsh-helix-mode
+        ''
+      ]; # explanation of "path:..." and other options explained in Antidote README.
+
+    };
+  };
 
   programs.git = {
     enable = true;
@@ -109,6 +127,30 @@
   programs.yazi = {
     enable = true;
   };
+
+  programs.tmux = {
+    enable = true;
+  };
+
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "tokyonight";
+      editor.cursor-shape = {
+        normal = "block";
+        insert = "bar";
+        select = "underline";
+      };
+    };
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+      }
+    ];
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

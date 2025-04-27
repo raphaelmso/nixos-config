@@ -136,8 +136,9 @@
   zoxide
   starship
   btop
-  evil-helix
+  helix
   bat
+  nixfmt-rfc-style
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

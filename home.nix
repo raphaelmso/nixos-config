@@ -22,6 +22,8 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -37,12 +39,22 @@
     # '')
     yazi
     lazygit
-    kitty
     starship
     tldr
     nil
     alacritty
     zellij
+    # gimp
+    # handbrake
+    # vlc
+    # discord
+    # steam
+    # obsidian
+    # anki
+    # spotify
+    # okular
+    # brave
+    # gnome-boxes
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -123,11 +135,6 @@
     history.size = 10000;
     history.ignoreAllDups = true;
     history.path = "$HOME/.zsh_history";
-    history.ignorePatterns = [
-      "rm *"
-      "pkill *"
-      "cp *"
-    ];
 
     # With Antidote:
     antidote = {
@@ -159,10 +166,6 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  programs.yazi = {
-    enable = true;
   };
 
   programs.helix = {

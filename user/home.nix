@@ -9,11 +9,12 @@
   imports = [
     ./development/tools/helix.nix
     ./development/tools/alacritty.nix
-    ./development/tools/shell.nix
+    # ./development/tools/shell.nix
     ./development/tools/zellij.nix
     ./development/tools/git.nix
 
     ./development/langs/nix.nix
+    ./development/langs/rust.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

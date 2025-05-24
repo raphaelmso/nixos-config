@@ -5,7 +5,9 @@
   ...
 }:
 {
+
   home.packages = with pkgs; [
+    zsh
     zoxide
     starship
     btop
@@ -14,6 +16,7 @@
     tldr
     yazi
   ];
+
   programs.zsh = {
     enable = true;
 
@@ -30,18 +33,35 @@
       grep = "rg";
     };
 
-    # With Antidote:
-    antidote = {
-      enable = true;
-      plugins = [
-        ''
-          Multirious/zsh-helix-mode
-          zsh-users/zsh-autosuggestions
-          Aloxaf/fzf-tab
-        ''
-      ]; # explanation of "path:..." and other options explained in Antidote README.
-
-    };
+    # plugins = [
+    #   {
+    #     name = "zsh-helix-mode";
+    #     src = pkgs.fetchFromGitHub {
+    #       owner = "Multirious";
+    #       repo = "zsh-helix-mode";
+    #       rev = "...";
+    #       sha256 = "...";
+    #     };
+    #   }
+    # {
+    #   name = "zsh-autosuggestions";
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "zsh-users";
+    #     repo = "zsh-autosuggestions";
+    #     rev = "...";
+    #     sha256 = "...";
+    #   };
+    # }
+    # {
+    #   name = "fzf-tab";
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "Aloxaf";
+    #     repo = "fzf-tab";
+    #     rev = "...";
+    #     sha256 = "...";
+    #   };
+    # }
+    # ];
   };
 
   programs.starship = {

@@ -6,6 +6,15 @@
 }:
 
 {
+  imports = [
+    ./development/tools/helix.nix
+    ./development/tools/alacritty.nix
+    ./development/tools/shell.nix
+    ./development/tools/zellij.nix
+    ./development/tools/git.nix
+
+    ./development/langs/nix.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "raphael";
@@ -37,13 +46,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    yazi
-    lazygit
-    starship
-    tldr
-    nil
     alacritty
-    zellij
     # gimp
     # handbrake
     # vlc
@@ -90,101 +93,6 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
-  };
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window.startup_mode = "Fullscreen";
-      font.normal = {
-        family = "JetBrainsMono Nerd Font";
-        style = "regular";
-      };
-      font.size = 13;
-
-      colors.primary = {
-        background = "#1a1b26";
-        foreground = "#c0caf5";
-      };
-      colors.normal = {
-        black = "#15161e";
-        red = "#f7768e";
-        green = "#9ece6a";
-        yellow = "#e0af68";
-        blue = "#7aa2f7";
-        magenta = "#bb9af7";
-        cyan = "#7dcfff";
-        white = "#a9b1d6";
-      };
-      colors.bright = {
-        black = "#414868";
-        red = "#ff899d";
-        green = "#9fe044";
-        yellow = "#faba4a";
-        blue = "#8db0ff";
-        magenta = "#c7a9ff";
-        cyan = "#a4daff";
-        white = "#c0caf5";
-      };
-    };
-  };
-
-  programs.zsh = {
-    enable = true;
-
-    history.size = 10000;
-    history.ignoreAllDups = true;
-    history.path = "$HOME/.zsh_history";
-
-    # With Antidote:
-    antidote = {
-      enable = true;
-      plugins = [
-        ''
-          Multirious/zsh-helix-mode
-          zsh-users/zsh-autosuggestions
-          Aloxaf/fzf-tab
-        ''
-      ]; # explanation of "path:..." and other options explained in Antidote README.
-
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Raphael Oliveira";
-    userEmail = "raphael.msoliveira@gmail.com";
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-    };
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.helix = {
-    enable = true;
-    settings = {
-      theme = "tokyonight";
-      editor.cursor-shape = {
-        normal = "block";
-        insert = "bar";
-        select = "underline";
-      };
-    };
-    languages.language = [
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
-      }
-    ];
   };
 
   # Let Home Manager install and manage itself.

@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -44,7 +49,7 @@
   };
 
   # TLP
-  services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = lib.mkForce false;
   services.tlp = {
     enable = true;
     settings = {
@@ -57,7 +62,7 @@
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 30;
+      CPU_MAX_PERF_ON_BAT = 50;
 
       #Optional helps save long term battery health
       START_CHARGE_THRESH_BAT0 = 55; # 55 and below it starts to charge
@@ -147,18 +152,12 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     wget
-    neovim
     fzf
     fd
     ripgrep
     curl
     zsh
-    zoxide
-    starship
-    btop
     helix
-    bat
-    nixfmt-rfc-style
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

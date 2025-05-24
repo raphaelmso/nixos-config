@@ -23,7 +23,7 @@
         forge = lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
+            ./hosts/forge/configuration.nix
           ];
         };
       };
@@ -31,7 +31,7 @@
         raphael = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home.nix
+            ./user/home.nix
           ];
         };
       };

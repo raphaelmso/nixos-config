@@ -27,6 +27,18 @@
 
         };
       };
+      keys.normal = {
+        space.l = [
+          ":write-all"
+          ":new"
+          ":insert-output lazygit"
+          ":set mouse false" # First disable mouse to hint helix into activating it
+          ":set mouse true"
+          ":buffer-close!"
+          ":redraw"
+          ":reload-all"
+        ];
+      };
     };
     languages.language = [
       {

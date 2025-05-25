@@ -18,26 +18,9 @@
     yazi
   ];
 
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-    };
-  };
-
-  programs.zoxide = {
-    enable = true;
-  };
-
   programs.zsh = {
     enable = true;
 
-    enableCompletion = true;
     history.size = 10000;
     history.ignoreAllDups = true;
     history.path = "$HOME/.zsh_history";
@@ -57,12 +40,27 @@
         ''
           zsh-users/zsh-autosuggestions
           Multirious/zsh-helix-mode
-          Aloxaf/fzf-tab
         ''
       ];
 
     };
 
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+    };
+  };
+
+  programs.zoxide = {
+    enable = true;
   };
 
 }

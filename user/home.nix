@@ -42,19 +42,19 @@
 
     nerd-fonts.jetbrains-mono
     alacritty
-    # gimp
-    # handbrake
-    # vlc
-    # discord
-    # steam
-    # obsidian
-    # anki
-    # spotify
+    gimp
+    handbrake
+    vlc
+    discord
+    steam
+    obsidian
+    anki
+    spotify
     # okular
-    # brave
-    # gnome-boxes
+    brave
+    gnome-boxes
     # kdePackages.kdenlive
-    # calibre
+    calibre
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

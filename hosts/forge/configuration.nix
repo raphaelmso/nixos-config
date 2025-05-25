@@ -16,9 +16,8 @@
   ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "forge"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -48,54 +47,16 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # TLP
-  services.power-profiles-daemon.enable = lib.mkForce false;
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 50;
-
-      #Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 55; # 55 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
-
-    };
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      # The name is just the name of the configuration file, it does not really matter
-      default = {
-        ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
-        # Everything but the ID section:
-        settings = {
-          # The main layer, if you choose to declare it in Nix
-          main = {
-            capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
-            rightcontrol = "rightcontrol";
-          };
-          otherlayer = { };
-        };
-      };
-    };
-  };
-
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+  services.desktopManager.cosmic.enable = true;
+  services.desktopManager.cosmic.xwayland.enable = true;
+
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -110,7 +71,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -137,7 +98,8 @@
       "wheel"
     ];
     shell = pkgs.zsh;
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+    ];
   };
 
   # Allow unfree packages
@@ -156,9 +118,51 @@
     zsh
     helix
     starship
+    #  wget
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
+  # TLP
+  services.power-profiles-daemon.enable = lib.mkForce false;
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 50;
+
+      #Optional helps save long term battery health
+      START_CHARGE_THRESH_BAT0 = 55; # 55 and below it starts to charge
+      STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
+
+    };
+  };
+
+  # Keyd
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      # The name is just the name of the configuration file, it does not really matter
+      default = {
+        ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
+        # Everything but the ID section:
+        settings = {
+          # The main layer, if you choose to declare it in Nix
+          main = {
+            capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
+            rightcontrol = "rightcontrol";
+          };
+          otherlayer = { };
+        };
+      };
+    };
+  }; # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
@@ -184,6 +188,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
   programs.zsh.enable = true;
 
   nix.settings.experimental-features = [

@@ -5,7 +5,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window.startup_mode = "Fullscreen";
+      window.decorations = "None";
       font.normal = {
         family = "JetBrainsMono Nerd Font";
         style = "regular";

@@ -13,13 +13,31 @@
     btop
     bat
     eza
+    fzf
     tldr
     yazi
   ];
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+    };
+  };
+
+  programs.zoxide = {
+    enable = true;
+  };
+
   programs.zsh = {
     enable = true;
 
+    enableCompletion = true;
     history.size = 10000;
     history.ignoreAllDups = true;
     history.path = "$HOME/.zsh_history";
@@ -33,50 +51,18 @@
       grep = "rg";
     };
 
-    # plugins = [
-    #   {
-    #     name = "zsh-helix-mode";
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "Multirious";
-    #       repo = "zsh-helix-mode";
-    #       rev = "...";
-    #       sha256 = "...";
-    #     };
-    #   }
-    # {
-    #   name = "zsh-autosuggestions";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "zsh-users";
-    #     repo = "zsh-autosuggestions";
-    #     rev = "...";
-    #     sha256 = "...";
-    #   };
-    # }
-    # {
-    #   name = "fzf-tab";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "Aloxaf";
-    #     repo = "fzf-tab";
-    #     rev = "...";
-    #     sha256 = "...";
-    #   };
-    # }
-    # ];
-  };
+    antidote = {
+      enable = true;
+      plugins = [
+        ''
+          zsh-users/zsh-autosuggestions
+          Multirious/zsh-helix-mode
+          Aloxaf/fzf-tab
+        ''
+      ];
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
     };
+
   };
 
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-  };
 }

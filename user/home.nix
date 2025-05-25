@@ -6,10 +6,14 @@
 }:
 
 {
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
   imports = [
     ./development/tools/helix.nix
     ./development/tools/alacritty.nix
-    # ./development/tools/shell.nix
+    ./development/tools/shell.nix
     ./development/tools/zellij.nix
     ./development/tools/git.nix
 
@@ -36,16 +40,6 @@
 
   home.packages = with pkgs; [
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
     nerd-fonts.jetbrains-mono
     alacritty
     # gimp
@@ -59,6 +53,8 @@
     # okular
     # brave
     # gnome-boxes
+    # kdePackages.kdenlive
+    # calibre
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -96,6 +92,4 @@
     EDITOR = "hx";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

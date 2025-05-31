@@ -47,16 +47,9 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
   services.displayManager.cosmic-greeter.enable = true;
   services.desktopManager.cosmic.enable = true;
   services.desktopManager.cosmic.xwayland.enable = true;
-
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -108,17 +101,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    git
-    wget
-    fzf
-    fd
-    ripgrep
-    curl
-    zsh
-    helix
-    starship
-    #  wget
+    # vim
+    # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   ];
 
   # TLP
@@ -169,6 +153,7 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  systemd.extraConfig = "DefaultTimeoutStopSec=10s";
 
   # List services that you want to enable:
 
@@ -190,6 +175,10 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
   programs.zsh.enable = true;
+
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs.gamemode.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"

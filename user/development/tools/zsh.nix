@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -16,6 +14,10 @@
     fzf
     tldr
     yazi
+    fd
+    ripgrep
+    wget
+    curl
   ];
 
   programs.zsh = {
@@ -25,6 +27,8 @@
     history.ignoreAllDups = true;
     history.path = "$HOME/.zsh_history";
 
+    autosuggestion.enable = true;
+
     shellAliases = {
       zjs = "zellij --session";
       cd = "z";
@@ -32,17 +36,6 @@
       erd = "erd -y inverted -H";
       erda = "erd -y inverted -H -. --no-git";
       grep = "rg";
-    };
-
-    antidote = {
-      enable = true;
-      plugins = [
-        ''
-          zsh-users/zsh-autosuggestions
-          Multirious/zsh-helix-mode
-        ''
-      ];
-
     };
 
   };

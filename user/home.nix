@@ -13,12 +13,13 @@
   imports = [
     ./development/tools/helix.nix
     ./development/tools/alacritty.nix
-    ./development/tools/shell.nix
+    ./development/tools/zsh.nix
     ./development/tools/zellij.nix
     ./development/tools/git.nix
 
     ./development/langs/nix.nix
     ./development/langs/rust.nix
+
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -46,15 +47,22 @@
     handbrake
     vlc
     discord
-    steam
     obsidian
     anki
     spotify
-    # okular
+    fastfetch
     brave
     gnome-boxes
-    # kdePackages.kdenlive
+    kdePackages.kdenlive
+    kdePackages.okular
+    blueman
     calibre
+    efibootmgr
+    keyd
+    simple-scan
+    evince
+    mangohud
+    protonup
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -90,6 +98,9 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
+    TERMINAL = "alacritty";
+    BROWSER = "brave";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\\\${HOME}/.steam/root/compatibilitytools.d";
   };
 
 }

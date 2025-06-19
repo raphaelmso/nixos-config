@@ -47,9 +47,13 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services.displayManager.cosmic-greeter.enable = true;
-  services.desktopManager.cosmic.enable = true;
-  services.desktopManager.cosmic.xwayland.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
+  # services.desktopManager.cosmic.xwayland.enable = true;
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -119,7 +123,7 @@
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 50;
+      CPU_MAX_PERF_ON_BAT = 30;
 
       #Optional helps save long term battery health
       START_CHARGE_THRESH_BAT0 = 55; # 55 and below it starts to charge
@@ -153,7 +157,7 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  systemd.extraConfig = "DefaultTimeoutStopSec=10s";
+  systemd.extraConfig = "DefaultTimeoutStopSec=5s";
 
   # List services that you want to enable:
 

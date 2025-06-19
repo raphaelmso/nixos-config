@@ -20,6 +20,8 @@
     ./development/langs/nix.nix
     ./development/langs/rust.nix
 
+    ./plasma.nix
+
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -63,6 +65,8 @@
     evince
     mangohud
     protonup
+    yt-dlp
+    lm_sensors
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

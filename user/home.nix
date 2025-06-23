@@ -20,6 +20,8 @@
     ./development/langs/nix.nix
     ./development/langs/rust.nix
 
+    ./plasma.nix
+
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -55,7 +57,6 @@
     gnome-boxes
     kdePackages.kdenlive
     kdePackages.okular
-    blueman
     calibre
     efibootmgr
     keyd

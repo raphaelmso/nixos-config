@@ -148,11 +148,11 @@
           krohnkiteEnabled = true;
         };
         "Script-krohnkite" = {
-          screenGapBetween = 3;
-          screenGapBottom = 3;
-          screenGapLeft = 3;
-          screenGapRight = 3;
-          screenGapTop = 3;
+          screenGapBetween = 4;
+          screenGapBottom = 4;
+          screenGapLeft = 4;
+          screenGapRight = 4;
+          screenGapTop = 4;
         };
       };
     };

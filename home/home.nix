@@ -52,6 +52,7 @@
     protonup
     yt-dlp
     lm_sensors
+    base16-schemes
   ];
 
   home.file = { };

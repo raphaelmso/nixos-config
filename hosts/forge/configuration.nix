@@ -184,6 +184,10 @@
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
+  stylix.enable = true;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+  stylix.image = ../../images/wallpaper.jpg;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

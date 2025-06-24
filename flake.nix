@@ -16,6 +16,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -24,6 +29,7 @@
       nixpkgs,
       home-manager,
       plasma-manager,
+      stylix,
       ...
     }:
     let
@@ -36,6 +42,8 @@
         forge = lib.nixosSystem {
           inherit system;
           modules = [
+            stylix.nixosModules.stylix
+
             ./hosts/forge/configuration.nix
           ];
         };

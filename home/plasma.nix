@@ -9,7 +9,6 @@
 
     workspace = {
       clickItemTo = "select";
-      colorScheme = "BreezeDark";
       splashScreen.engine = "none";
       splashScreen.theme = "none";
     };
@@ -148,11 +147,11 @@
           krohnkiteEnabled = true;
         };
         "Script-krohnkite" = {
-          screenGapBetween = 4;
-          screenGapBottom = 4;
-          screenGapLeft = 4;
-          screenGapRight = 4;
-          screenGapTop = 4;
+          screenGapBetween = 5;
+          screenGapBottom = 5;
+          screenGapLeft = 5;
+          screenGapRight = 5;
+          screenGapTop = 5;
         };
       };
     };

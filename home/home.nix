@@ -8,6 +8,18 @@
 {
   programs.home-manager.enable = true;
 
+  stylix.enable = true;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+  stylix.targets.alacritty.enable = false;
+  stylix.targets.helix.enable = false;
+  stylix.fonts = {
+
+    monospace = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono Nerd Font";
+    };
+  };
+
   imports = [
     ./development/tools/helix.nix
     ./development/tools/alacritty.nix
@@ -39,20 +51,26 @@
     anki
     spotify
     fastfetch
-    brave
     gnome-boxes
     kdePackages.kdenlive
     kdePackages.okular
+    kdePackages.qtmultimedia
+    kdePackages.yakuake
+    kdePackages.filelight
     calibre
     efibootmgr
     keyd
     simple-scan
-    evince
+    kitty
     mangohud
     protonup
     yt-dlp
     lm_sensors
     base16-schemes
+    roboto
+    brave
+    onlyoffice-desktopeditors
+    mpv
   ];
 
   home.file = { };

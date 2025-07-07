@@ -93,19 +93,19 @@
           window-types = [ "normal" ];
         };
       }
-      {
-        apply = {
-          desktops = "Desktop_4";
-        };
-        description = "Assign Anki to Desktop 4";
-        match = {
-          window-class = {
-            value = "anki";
-            type = "substring";
-          };
-          window-types = [ "normal" ];
-        };
-      }
+      # {
+      #   apply = {
+      #     desktops = "Desktop_4";
+      #   };
+      #   description = "Assign Anki to Desktop 4";
+      #   match = {
+      #     window-class = {
+      #       value = "anki";
+      #       type = "substring";
+      #     };
+      #     window-types = [ "normal" ];
+      #   };
+      # }
     ];
 
     krunner = {
@@ -140,6 +140,11 @@
       };
     };
 
+    startup.startupScript."load-krunner" = {
+      text = "krunner -d";
+      priority = 4;
+    };
+
     # overrideConfig = true;
     configFile = {
       kwinrc = {
@@ -153,8 +158,14 @@
           screenGapRight = 5;
           screenGapTop = 5;
         };
+        # kded5rc rewrites gtkrc-2.0 and conflicts with stylix
       };
-    };
+      kded5rc = {
+        "Module-gtkconfig"."autoload" = false;
+      };
+      klaunchrc.FeedbackStyle.BusyCursor = false;
+      klipperrc.General.MaxClipItems = 1000;
 
+    };
   };
 }

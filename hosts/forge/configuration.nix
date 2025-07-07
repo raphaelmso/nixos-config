@@ -15,6 +15,12 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.bluetooth.enable = true;
+  hardware.graphics = {
+    enable = true; # installs 'pkgs.mesa'
+    enable32Bit = true; # installs 'pkgs.pkgsi686Linux.mesa'
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -51,9 +57,13 @@
   # services.desktopManager.cosmic.enable = true;
   # services.desktopManager.cosmic.xwayland.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
   services.desktopManager.plasma6.enable = true;
+  programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -107,6 +117,10 @@
   environment.systemPackages = with pkgs; [
     # vim
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+      [General]
+      background=${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images/5120x2880.png
+    '')
   ];
 
   # TLP

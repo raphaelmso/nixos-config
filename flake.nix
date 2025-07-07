@@ -43,7 +43,6 @@
           inherit system;
           modules = [
             stylix.nixosModules.stylix
-
             ./hosts/forge/configuration.nix
           ];
         };
@@ -53,6 +52,7 @@
           inherit pkgs;
           modules = [
             plasma-manager.homeManagerModules.plasma-manager
+            stylix.homeModules.stylix
             ./home/home.nix
           ];
         };
